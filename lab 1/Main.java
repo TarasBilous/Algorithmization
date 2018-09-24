@@ -1,12 +1,29 @@
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    private static <T> void printList(ArrayList<T> list) {
-        for (T el : list) {
+    public static void main(String[] args) {
+
+        List<Laptop> laptops = readFile("D:\\algo.txt");
+
+        System.out.println("Current array:");
+        printList(laptops);
+
+        BubbleSorter.bubbleSort(laptops, new VolumeRamComparator());
+        System.out.println("\nDescending by the RAM volume(bubble sort):");
+        printList(laptops);
+
+        MergeSorter.mergeSort(laptops, new SpeedCpuComparator());
+        System.out.println("\nSorted by the CPU speed(merge sort):");
+        printList(laptops);
+    }
+
+    private static void printList(List<Laptop> list) {
+        for (Laptop el : list) {
             System.out.println(el);
         }
     }
@@ -27,8 +44,8 @@ public class Main {
         }
     }
 
-    private static ArrayList<Laptop> readFile(String path) {
-        ArrayList<Laptop> laptops = new ArrayList<>();
+    private static List<Laptop> readFile(String path) {
+        List<Laptop> laptops = new ArrayList<>();
         Scanner scanner;
 
         try {
@@ -43,22 +60,5 @@ public class Main {
             e.printStackTrace();
         }
         return laptops;
-    }
-
-    public static void main(String[] args) {
-
-        ArrayList<Laptop> laptops = readFile("D:\\algo.txt");
-        ;
-
-        System.out.println("Current array:");
-        printList(laptops);
-
-        BubbleSort.bubbleSort(laptops, new VolumeRamComparator());
-        System.out.println("\nDescending by the RAM volume(bubble sort):");
-        printList(laptops);
-
-        MergeSort.mergeSort(laptops, new SpeedCpuComparator());
-        System.out.println("\nSorted by the CPU speed(merge sort):");
-        printList(laptops);
     }
 }
