@@ -1,0 +1,6 @@
+apple,35,45
+lenovo,40,25
+asus,60,30
+xiaomi,90,10
+hp,50,50
+acer,60,30
