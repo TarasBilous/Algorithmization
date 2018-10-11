@@ -19,4 +19,7 @@ class Lab2Test(unittest.TestCase):
         ]
 
         for i in range(test_lists.__len__()):
-            self.assertEqual(Lab2.calendar_algo(test_lists[i]), test_results[i])
+            Lab2.selection_sort(test_lists[i])
+
+        for i in range(test_lists.__len__()):
+            self.assertEqual(Lab2.tuple_simplification(test_lists[i]), test_results[i])
