@@ -9,8 +9,8 @@ public class Main {
         int weddCount = 0;
         for (int i = 0; i < weddGraph.getVertexes().size(); i++) {
             for (int j = i + 1; j < weddGraph.getVertexes().size(); j++) {
-                if (!weddGraph.checkElemBfs(weddGraph.getVertexes().get(i), weddGraph.getVertexes().get(j))) {
-                    if ((weddGraph.getVertexes().get(i).value + weddGraph.getVertexes().get(j).value) % 2 != 0) {
+                if (isNotTheSameTribe(weddGraph, i, j)) {
+                    if (isBoyAndGirlPair(weddGraph, i, j)) {
                         weddCount += 1;
                         System.out.println(weddGraph.getVertexes().get(i).value + " - " + weddGraph.getVertexes().get(j).value);
                     }
@@ -19,6 +19,14 @@ public class Main {
         }
 
         System.out.println("Total: " + weddCount);
+    }
+
+    private static boolean isNotTheSameTribe(Graph weddGraph, int i, int j) {
+        return !weddGraph.checkElemBfs(weddGraph.getVertexes().get(i), weddGraph.getVertexes().get(j));
+    }
+
+    private static boolean isBoyAndGirlPair(Graph weddGraph, int i, int j) {
+        return (weddGraph.getVertexes().get(i).value + weddGraph.getVertexes().get(j).value) % 2 != 0;
     }
 
     private static void readFile(Graph graph, String path) {
